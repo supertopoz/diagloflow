@@ -5,7 +5,8 @@
   "logo": "https://node-js-sample.herokuapp.com/node.png",
   "keywords": ["node", "express", "static"],
   "buildpacks" : [
-    {"url":"https://github.com/buyersight/heroku-google-application-credentials-buildpack.git"}
+    {"url":"https://github.com/buyersight/heroku-google-application-credentials-buildpack.git"},
+    {"url":"https://github.com/heroku/heroku-buildpack-nodejs#latest"}
   ],
   "env": {
     "GOOGLE_CREDENTIALS": {
