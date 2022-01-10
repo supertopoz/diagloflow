@@ -10,7 +10,7 @@
   ],
   "addons": [
     {
-      "plan": "heroku-redis:hobby-dev",
+      "plan": "heroku-postgres:hobby-dev",
       "as": "DIFLOW"
     }
   ],
