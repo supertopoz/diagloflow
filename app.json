@@ -1,0 +1,20 @@
+{
+  "name": "Diagloflow",
+  "description": "Dialogue Flow deployment for Sendbird",
+  "repository": "https://github.com/supertopoz/diagloflow",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "express", "static"],
+  "buildpacks" : [
+    "https://github.com/buyersight/heroku-google-application-credentials-buildpack.git"
+  ],
+  "env": {
+    "GOOGLE_CREDENTIALS": {
+      "description": "Paste content of service account credential JSON seen here https://elements.heroku.com/buildpacks/buyersight/heroku-google-application-credentials-buildpack"
+    },
+    "GOOGLE_APPLICATION_CREDENTIALS": {
+      "description": "Point to the Google Credentials",
+      "value": "google-credentials.json"
+    }
+  }
+
+}
