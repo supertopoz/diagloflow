@@ -12,77 +12,77 @@ async function detectIntent(
     contexts,
     languageCode
 ) {
-  // The path to identify the agent that owns the created intent.
-  const sessionPath = sessionClient.projectAgentSessionPath(
-      projectId,
-      sessionId
-  );
+    // The path to identify the agent that owns the created intent.
+    const sessionPath = sessionClient.projectAgentSessionPath(
+        projectId,
+        sessionId
+    );
 
-  // The text query request.
-  const request = {
-    session: sessionPath,
-    queryInput: {
-      text: {
-        text: query,
-        languageCode: languageCode,
-      },
-    },
-  };
-
-  if (contexts && contexts.length > 0) {
-    request.queryParams = {
-      contexts: contexts,
+    // The text query request.
+    const request = {
+        session: sessionPath,
+        queryInput: {
+            text: {
+                text: query,
+                languageCode: languageCode,
+            },
+        },
     };
-  }
 
-  const responses = await sessionClient.detectIntent(request);
-  return responses[0];
+    if (contexts && contexts.length > 0) {
+        request.queryParams = {
+            contexts: contexts,
+        };
+    }
+
+    const responses = await sessionClient.detectIntent(request);
+    return responses[0];
 }
 
 async function executeQueries(projectId, sessionId, queries, languageCode) {
-  // Keeping the context across queries let's us simulate an ongoing conversation with the bot
-  let context;
-  let intentResponse;
-  for (const query of queries) {
-    try {
-      console.log(`Sending Query: ${query}`);
-      intentResponse = await detectIntent(
-          projectId,
-          sessionId,
-          query,
-          context,
-          languageCode
-      );
-      console.log('Detected intent');
-      console.log(
-          `Fulfillment Text: ${intentResponse.queryResult.fulfillmentText}`
-      );
-      // Use the context from this response for next queries
-      context = intentResponse.queryResult.outputContexts;
-    } catch (error) {
-      console.log(error);
+    // Keeping the context across queries let's us simulate an ongoing conversation with the bot
+    let context;
+    let intentResponse;
+    for (const query of queries) {
+        try {
+            console.log(`Sending Query: ${query}`);
+            intentResponse = await detectIntent(
+                projectId,
+                sessionId,
+                query,
+                context,
+                languageCode
+            );
+            console.log('Detected intent');
+            console.log(
+                `Fulfillment Text: ${intentResponse.queryResult.fulfillmentText}`
+            );
+
+            // Use the context from this response for next queries
+            context = intentResponse.queryResult.outputContexts;
+            return intentResponse.queryResult.fulfillmentText
+        } catch (error) {
+            console.log(error);
+        }
     }
-  }
 }
 
 
-
-
 /* GET users listing. */
-router.post('/', async function(req, res, next) {
-  // projectId: ID of the GCP project where Dialogflow agent is deployed
-  const projectId = 'sendbird1-2024c';
+router.post('/', async function (req, res, next) {
+    // projectId: ID of the GCP project where Dialogflow agent is deployed
+    const projectId = 'sendbird1-2024c';
 // sessionId: String representing a random number or hashed user identifier
-  const sessionId = '123456';
+    const sessionId = '123456';
 // queries: A set of sequential queries to be send to Dialogflow agent for Intent Detection
-  const queries = [req.body.user_text]
-  console.log(queries)
+    const queries = [req.body.user_text]
 // languageCode: Indicates the language Dialogflow agent should use to detect intents
-const languageCode = 'en';
+    const languageCode = 'en';
 
 // Imports the Dialogflow library
-  await result = executeQueries(projectId, sessionId, queries, languageCode)
-  res.send(result)
+    const result = await executeQueries(projectId, sessionId, queries, languageCode)
+    console.log('RESULT:', result)
+    res.send(result)
 });
 
 module.exports = router;
