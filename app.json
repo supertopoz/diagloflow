@@ -9,7 +9,7 @@
   ],
   "env": {
     "GOOGLE_CREDENTIALS": {
-      "description": "Paste content of service account credential JSON seen here https://elements.heroku.com/buildpacks/buyersight/heroku-google-application-credentials-buildpack"
+      "description": "Paste content of Google service account credential JSON seen here https://cloud.google.com/docs/authentication/getting-started"
     },
     "GOOGLE_APPLICATION_CREDENTIALS": {
       "description": "Points to the Google Credentials. DO NOT CHANGE THIS!",
