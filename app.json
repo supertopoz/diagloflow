@@ -8,6 +8,12 @@
     {"url":"https://github.com/buyersight/heroku-google-application-credentials-buildpack.git"},
     {"url":"https://github.com/heroku/heroku-buildpack-nodejs#latest"}
   ],
+  "addons": [
+    {
+      "plan": "heroku-redis:hobby-dev",
+      "as": "DIFLOW"
+    }
+  ],
   "env": {
     "GOOGLE_CREDENTIALS": {
       "description": "Paste content of Google service account credential JSON seen here https://cloud.google.com/docs/authentication/getting-started"
