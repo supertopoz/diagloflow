@@ -69,7 +69,7 @@ async function executeQueries(projectId, sessionId, queries, languageCode) {
 
 
 /* GET users listing. */
-router.post('/', function(req, res, next) {
+router.post('/', async function(req, res, next) {
   // projectId: ID of the GCP project where Dialogflow agent is deployed
   const projectId = 'sendbird1-2024c';
 // sessionId: String representing a random number or hashed user identifier
@@ -81,8 +81,8 @@ router.post('/', function(req, res, next) {
 const languageCode = 'en';
 
 // Imports the Dialogflow library
-  executeQueries(projectId, sessionId, queries, languageCode);
-  res.send('respond with a resource');
+  await result = executeQueries(projectId, sessionId, queries, languageCode)
+  res.send(result)
 });
 
 module.exports = router;
