@@ -11,7 +11,7 @@
   "addons": [
     {
       "plan": "heroku-postgresql:hobby-dev",
-      "as": "DIFLOW"
+      "as": "DATABASE_URL"
     }
   ],
   "env": {
