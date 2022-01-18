@@ -1,3 +1,4 @@
+var pgtools = require("pgtools");
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -35,5 +36,23 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
+const config = {
+  user: "postgres",
+  host: "localhost",
+  password: "1234",
+  port: 5432
+};
+
+pgtools.createdb(config, "dialogueflow_db", function(err, res) {
+  if (err) {
+    console.error(err);
+    process.exit(-1);
+  }
+  console.log(res);
+});
+
 
 module.exports = app;
