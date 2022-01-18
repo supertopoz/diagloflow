@@ -5,7 +5,12 @@ var path = require('path');
 var logger = require('morgan');
 require('dotenv').config();
 
-console.log(process.env.DATABASE_URL)
+
+setTimeout(() => {
+  console.log(process.env.DATABASE_URL)
+}, 120000)
+
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
