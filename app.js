@@ -1,14 +1,24 @@
 var pgtools = require("pgtools");
+require('dotenv').config();
+const { Pool, Client } = require("pg");
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
-require('dotenv').config();
+
+(async function(){
+  const db_url = process.env.DATABASE_URL
+  const client = new Client()
+  try {
+    await client.connect()
+  } catch (e) {
+    console.log(e)
+  }
+
+  console.log(client)
+})()
 
 
-setTimeout(() => {
-  console.log(process.env.DATABASE_URL)
-}, 120000)
 
 
 
