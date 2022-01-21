@@ -1,6 +1,7 @@
 var pgtools = require("pgtools");
 require('dotenv').config();
 const { Pool, Client } = require("pg");
+const { parseSsl } = require('pg-ssl')
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -17,7 +18,7 @@ function timeout(ms) {
   console.log(db_url)
   try {
     const pool = new Pool({
-      connectionString: connectionString,
+      connectionString: connectionString, ssl: parseSsl()
     })
     const client = await pool.connect()
     pool.query('SELECT $1::text as name', ['brianc'], (err, result) => {
