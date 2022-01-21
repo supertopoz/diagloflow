@@ -6,13 +6,21 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 
+function timeout(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 (async function(){
   const db_url = process.env.DATABASE_URL
-  console.log(db_url)
+
   const client = new Client();
   try {
+
+    await timeout(120000)
     await client.connect()
-    console.log("SUCCESS DB ADDED");
+
+    console.log("SUCCESS DB ADDED 1");
+    console.log(db_url);
   } catch (e) {
     console.log("DB ERROR!", e);
   }
