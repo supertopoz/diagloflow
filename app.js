@@ -16,7 +16,7 @@ function timeout(ms) {
   const { Pool, Client } = require('pg')
   const connectionString = db_url
 
-  timeout(120000)
+  await timeout(120000)
   try {
     const pool = new Pool({
       connectionString: connectionString,
