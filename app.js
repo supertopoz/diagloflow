@@ -11,12 +11,10 @@ function timeout(ms) {
 }
 
 (async function(){
+  await timeout(60000)
   const db_url = process.env.DATABASE_URL
-
-  const { Pool, Client } = require('pg')
   const connectionString = db_url
-
-  await timeout(120000)
+  console.log(db_url)
   try {
     const pool = new Pool({
       connectionString: connectionString,
@@ -30,7 +28,7 @@ function timeout(ms) {
     })
 
   } catch (e) {
-    console.log("Pool failed", e)
+    console.log("Pool failed!!", e)
   }
 
 })()
