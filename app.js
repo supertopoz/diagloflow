@@ -8,14 +8,14 @@ var logger = require('morgan');
 
 (async function(){
   const db_url = process.env.DATABASE_URL
-  const client = new Client()
+  console.log(db_url)
+  const client = new Client();
   try {
     await client.connect()
+    console.log("SUCCESS DB ADDED");
   } catch (e) {
-    console.log(e)
+    console.log("DB ERROR!", e);
   }
-
-  console.log(client)
 })()
 
 
