@@ -13,17 +13,26 @@ function timeout(ms) {
 (async function(){
   const db_url = process.env.DATABASE_URL
 
-  const client = new Client();
+  const { Pool, Client } = require('pg')
+  const connectionString = db_url
+
+  timeout(120000)
   try {
+    const pool = new Pool({
+      connectionString: connectionString,
+    })
+    const client = await pool.connect()
+    pool.query('SELECT $1::text as name', ['brianc'], (err, result) => {
+      if (err) {
+        return console.error('Error executing query', err.stack)
+      }
+      console.log(result.rows[0].name) // brianc
+    })
 
-    await timeout(120000)
-    await client.connect()
-
-    console.log("SUCCESS DB ADDED 1");
-    console.log(db_url);
   } catch (e) {
-    console.log("DB ERROR!", e);
+    console.log("Pool failed", e)
   }
+
 })()
 
 
