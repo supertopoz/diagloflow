@@ -23,8 +23,8 @@
       "value": "google-credentials.json"
     },
     "PRODUCTION" : {
-      "description": "Used to detect service is deplloyed to production or not.",
-      "value": true
+      "description": "Used to detect service is deployed to production or not.",
+      "value": "true"
     }
   }
 }
