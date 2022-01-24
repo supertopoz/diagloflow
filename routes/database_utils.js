@@ -5,10 +5,10 @@ const isInProduction = process.env.PRODUCTION
 
 module.exports.createPool = () => {
     let ssl = null
-    if (isInProduction !== true) {
-        ssl = false
-    } else {
+    if (isInProduction == "true") {
         ssl = {rejectUnauthorized: false}
+    } else {
+        ssl = false
     }
     try {
         pool = new Pool({ connectionString: db_url, ssl: ssl })

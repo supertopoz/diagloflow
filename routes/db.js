@@ -3,14 +3,6 @@ const {Pool} = require("pg");
 const { createPool, checkTableExistence, createTable } = require("./database_utils")
 var router = express.Router();
 
-
-
-
-
-
-
-
-
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
 
