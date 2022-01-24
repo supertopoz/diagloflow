@@ -3,15 +3,26 @@ const {Pool} = require("pg");
 const { createPool, checkTableExistence, createTable } = require("./database_utils")
 var router = express.Router();
 
+
+
+
+
+
+
+
+
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
 
+    //TODO start adding db queries.
 
     //Check if the table exists.
     const pool = createPool();
-    const client = await pool.connect();
+    if(pool.error) {return res.status(500).send(pool.message)}
+    const client = await pool.pool.connect();
     const tableName = req.query.table
     const tableExists = await checkTableExistence(client, tableName)
+
     if (tableExists.error) {
         //Do some work creating the table
         const table = await createTable(client, tableName)
@@ -23,9 +34,11 @@ router.get('/', async function (req, res, next) {
         client.end()
         return
     } else {
+
         res.status(200).send(tableExists);
         client.end()
         return
     }
 });
+
 module.exports = router;

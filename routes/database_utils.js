@@ -1,21 +1,20 @@
 const {Pool} = require("pg");
 
 const db_url = process.env.DATABASE_URL
+const isInProduction = process.env.PRODUCTION
 
 module.exports.createPool = () => {
+    let ssl = null
+    if (isInProduction !== true) {
+        ssl = false
+    } else {
+        ssl = {rejectUnauthorized: false}
+    }
     try {
-        pool = new Pool({
-            connectionString: db_url,
-            ssl: {
-                rejectUnauthorized: false
-            }
-            // ssl: false
-        })
-        return pool
+        pool = new Pool({ connectionString: db_url, ssl: ssl })
+        return {error: false, pool: pool}
     } catch (e) {
-
-        console.log("POOL ERROR!", e)
-        return
+        return {error: true, message: e}
     }
 }
 

@@ -21,7 +21,10 @@
     "GOOGLE_APPLICATION_CREDENTIALS": {
       "description": "Points to the Google Credentials. DO NOT CHANGE THIS!",
       "value": "google-credentials.json"
+    },
+    "PRODUCTION" : {
+      "description": "Used to detect service is deplloyed to production or not.",
+      "value": true
     }
   }
-
 }
