@@ -43,7 +43,7 @@ module.exports.checkTableExistence = async (client, tableName) => {
     }
 }
 
-const createTable = async (client, tableName) => {
+module.exports.createTable = async (client, tableName) => {
 
     const text = `
     CREATE TABLE IF NOT EXISTS ${tableName} (
