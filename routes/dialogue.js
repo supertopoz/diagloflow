@@ -68,11 +68,6 @@ async function executeQueries(projectId, sessionId, queries, languageCode) {
     }
 }
 
-
-
-
-
-
 /* POST text to dialogue flow. */
 router.post('/', async function (req, res, next) {
     // projectId: ID of the GCP project where Dialogflow agent is deployed
