@@ -40,7 +40,6 @@ const auth = (req, res, next) => {
 app.use('/', indexRouter);
 app.use('/create_channel', auth, createChannelRouter);
 app.use('/dialogue', usersRouter);
-
 app.use('/database', dbRouter)
 
 module.exports = app;
