@@ -1,4 +1,5 @@
 var express = require('express');
+const { v4: uuidv4 } = require('uuid');
 const dialogflow = require('@google-cloud/dialogflow');
 var router = express.Router();
 
@@ -68,12 +69,20 @@ async function executeQueries(projectId, sessionId, queries, languageCode) {
 }
 
 
-/* GET users listing. */
+
+
+
+
+/* POST text to dialogue flow. */
 router.post('/', async function (req, res, next) {
     // projectId: ID of the GCP project where Dialogflow agent is deployed
     const projectId = 'sendbird1-2024c';
 // sessionId: String representing a random number or hashed user identifier
-    const sessionId = '123456';
+
+    const sessionId = uuidv4();
+
+    //TODO create auth for incoming user.
+    //Store the uuid againts user.
 // queries: A set of sequential queries to be send to Dialogflow agent for Intent Detection
     const queries = [req.body.user_text]
 // languageCode: Indicates the language Dialogflow agent should use to detect intents

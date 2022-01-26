@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www "
+    "start": "nodemon ./bin/www "
   },
   "dependencies": {
     "@google-cloud/dialogflow": "^4.6.0",
     "app.json": "^0.14.0",
+    "axios": "^0.25.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^14.2.0",
@@ -17,6 +18,8 @@
     "pg": "^8.7.1",
     "pg-ssl": "^0.0.1",
     "pgtools": "^0.3.2",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "sendbird": "^3.1.7",
+    "uuid": "^8.3.2"
   }
 }

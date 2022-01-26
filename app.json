@@ -3,10 +3,18 @@
   "description": "Dialogue Flow deployment for Sendbird",
   "repository": "https://github.com/supertopoz/diagloflow",
   "logo": "https://node-js-sample.herokuapp.com/node.png",
-  "keywords": ["node", "express", "static"],
-  "buildpacks" : [
-    {"url":"https://github.com/buyersight/heroku-google-application-credentials-buildpack.git"},
-    {"url":"https://github.com/heroku/heroku-buildpack-nodejs#latest"}
+  "keywords": [
+    "node",
+    "express",
+    "static"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/buyersight/heroku-google-application-credentials-buildpack.git"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest"
+    }
   ],
   "addons": [
     {
@@ -22,9 +30,25 @@
       "description": "Points to the Google Credentials. DO NOT CHANGE THIS!",
       "value": "google-credentials.json"
     },
-    "PRODUCTION" : {
+    "PRODUCTION": {
       "description": "Used to detect service is deployed to production or not.",
       "value": "true"
+    },
+    "SENDBIRD_APP_ID": {
+      "description": "Sendbird Application ID found in 'Overview' of Sendbird Dashboard ",
+      "value": "PLEASE ADD YOUR SENDBIRD APP_ID HERE..."
+    },
+    "SENDBIRD_API_TOKEN": {
+      "description": "Used to make API calls to Sendbird. Found in Sendbird Dashboard - Application - Settings",
+      "value": ""
+    },
+    "ALLOWED_BOT_IDS": {
+      "description": "A comma seperated list of allowed bot ids. This service will handle bot creation if they do not exist",
+      "value": "bot_1,bot_2,bot_3"
+    },
+    "ALLOWED_BOT_TYPES": {
+      "description": "A comma seperated list of allowed bot types. A Bot type is your own category for a bot",
+      "value": "customer,service_desk"
     }
   }
 }
