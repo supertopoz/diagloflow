@@ -5,19 +5,23 @@ const {v4: uuidv4} = require('uuid');
 
 const app_id = process.env.SENDBIRD_APP_ID
 const sendbird_api_token = process.env.SENDBIRD_API_TOKEN
+const isProduction = process.env.PRODUCTION
 
 
 const createBot = async (bot_id, bot_type) => {
+
+    let botCallbackUrl = `${process.env.NGROK_ENDPOINT}/dialogue`
+    if(isProduction == 'true') botCallbackUrl = `https://${process.env.HEROKU_APP_NAME}.herokuapp.com/dialogue`
+
 
     var data = JSON.stringify({
         "bot_userid": bot_id,
         "bot_nickname": bot_id,
         "bot_profile_url": "",
         "bot_type": bot_type,
-        "bot_callback_url": `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`,
+        "bot_callback_url": botCallbackUrl,
         "is_privacy_mode": true
     });
-
     var config = {
         method: 'post',
         url: `https://api-${app_id}.sendbird.com/v3/bots`,
@@ -82,8 +86,7 @@ const checkIfValuesAreAllowed = (req) => {
 /* create_channel. */
 router.post('/', async function (req, res, next) {
 
-    //TODO refactor create Sendbird channel.
-    //TODO consider how to get bot endpoint.
+    //TODO refactor localhost as bot endpoint
     //Channel creation requirements
     const bot_id = req.body.bot_id;
     const user_id = req.body.user_id;

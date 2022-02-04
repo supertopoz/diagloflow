@@ -16,13 +16,6 @@
       "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest"
     }
   ],
-  "addons": [
-    {
-      "plan": "heroku-postgresql:hobby-dev",
-      "as": "DATABASE"
-    }
-  ],
-
   "env": {
     "HEROKU_APP_NAME": {
       "description": "Copy paste your apps name again! This will be used as part of the url for bot callbacks"

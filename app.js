@@ -6,7 +6,6 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/dialogue');
-var dbRouter = require('./routes/db');
 var createChannelRouter = require('./routes/createChannelRouter');
 var {auth, schemaCheck} = require('./middleware/channelCreateMiddleWare')
 
@@ -28,6 +27,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/create_channel', auth, schemaCheck, createChannelRouter);
 app.use('/dialogue', usersRouter);
-app.use('/database', dbRouter)
 
 module.exports = app;
